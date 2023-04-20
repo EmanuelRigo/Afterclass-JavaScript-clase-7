@@ -1,7 +1,7 @@
 class Libro {
   constructor(titulo, autor, anio, genero, valoracion, id) {
     this.titulo = titulo;
-    this.auto = autor;
+    this.autor = autor;
     this.anio = parseInt(anio);
     this.genero = genero;
     this.valoracion = parseInt(valoracion);
@@ -70,10 +70,67 @@ function ordernar(criterio, array) {
   let arrayOrdenado = array.slice(0);
 
   switch (criterio) {
-    case value:
-      break;
+    case "1":
+      let nombreAscendente = arrayOrdenado.sort((a, b) =>
+        a.titulo.localeCompare(b.titulo)
+      );
+      return nombreAscendente;
+
+    case "2":
+      let nombreDescendente = arrayOrdenado.sort((a, b) =>
+        b.titulo.localeCompare(a.titulo)
+      );
+      return nombreDescendente;
+    case "3":
+      return arrayOrdenado.sort((a, b) => b.valoracion - a.valoracion);
+
+    case "4":
+      return arrayOrdenado.sort((a, b) => a.anio - b.anio);
 
     default:
       alert("No es un criterio valido");
+      break;
   }
+}
+
+//---------Fin de ordenar el array de acuerdo a lo de elija
+
+function crearStringOrdenado(array) {
+  let info = "";
+
+  array.forEach((elemento) => {
+    info +=
+      "Titulo: " +
+      elemento.titulo +
+      "\nAutor: " +
+      elemento.autor +
+      "\n Año de publicacion: " +
+      elemento.anio +
+      "\nValoracion: " +
+      elemento.valoracion +
+      " Puntos.\n\n";
+  });
+
+  return info;
+}
+
+alert(crearStringOrdenado(ordernar(criterio, libros)));
+
+//---------Filtrar libros de acuerdo al autor
+
+let autorElegido = prompt(
+  "Escribi el nombre del autor para que te mostremos sus libros"
+);
+
+const filtrado = libros.filter((libro) =>
+  libro.autor.toLowerCase().includes(autorElegido.toLowerCase())
+);
+
+if (filtrado.length == 0) {
+  alert("No encontramos ningun libro");
+} else {
+  const imprimible = filtrado.map((libro) => libro.titulo);
+  alert(
+    "Los libros que coinciden con el autor son:\n - " + imprimible.join("\n- ")
+  );
 }
