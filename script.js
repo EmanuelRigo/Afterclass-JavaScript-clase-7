@@ -33,3 +33,47 @@ const libros = [
   new Libro("Los Borgia", "Mario Puzo", 2001, "Novela Historica", 9, 6),
   new Libro("El Hobbit", "J.R.R. Tolkien", 1937, "Novela fantastica", 10, 7),
 ];
+
+//--------------------------Pedir que se ingresen libros
+
+let continuar = true;
+
+while (continuar) {
+  let ingreso = prompt(
+    "Ingresa los datos del libro: titulo, autor, año, genero, puntaje del 1 al 10, separados por una barra diagonal (/). Ingresa X para finalizar"
+  );
+
+  if (ingreso.toUpperCase() == "X") {
+    continuar = false;
+    break;
+  }
+
+  let datos = ingreso.split("/");
+
+  const libro = new Libro(datos[0], datos[1], datos[2], datos[3], datos[4]);
+
+  libros.push(libro);
+  libro.asignarId(libros);
+
+  console.log(libros);
+}
+
+//------------Terminamos de pedir los datos y sumarlos al array
+
+//---------Ordenar el array de acuerdo a lo que se elija
+
+let criterio = prompt(
+  "Elegi el criterio deseado: \n1 -Titulo (A-Z) \n2 - Titulo (Z-A) \n3 - Mejor a peor puntuado \n4 - Fecha de publicacion (Mas viejo a mas nuevo)"
+);
+
+function ordernar(criterio, array) {
+  let arrayOrdenado = array.slice(0);
+
+  switch (criterio) {
+    case value:
+      break;
+
+    default:
+      alert("No es un criterio valido");
+  }
+}
